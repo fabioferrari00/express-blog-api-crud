@@ -1,7 +1,17 @@
 const posts = require('../data/posts.js');
 
 const index = (req, res) => {
-  res.send("Elenco dei post");
+
+  const title = req.query.title;
+
+  let filteredPost = posts
+
+  //verifico se name è definito o meno
+  if (title) {
+    filteredPost = posts.filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
+  }
+
+  res.send(filteredPost);
 }
 
 const show = (req, res) => {
