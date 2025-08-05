@@ -28,7 +28,25 @@ const show = (req, res) => {
 
 const store = (req, res) => {
 
-  console.log(req.body);
+  //creo un nuovo id
+  const newId = posts[posts.length - 1].id + 1;
+
+  //destrutturo il req.body
+  const { title, content, image, tags } = req.body;
+
+
+  //creo un nuovo oggetto post
+  const newPost = {
+    id: newId,
+    title,
+    content,
+    image,
+    tags
+  }
+
+  posts.push(newPost);
+
+  res.status(201).json(newPost);
 
 }
 
