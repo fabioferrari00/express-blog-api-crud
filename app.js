@@ -5,6 +5,7 @@ const port = 3000;
 
 //dico ad express di utilizzare la cartella public
 app.use(express.static('public'));
+app.use(express.json());
 
 //importo il file router per i post
 const postRouter = require('./routers/posts.js');
