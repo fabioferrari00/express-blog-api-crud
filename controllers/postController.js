@@ -51,7 +51,27 @@ const store = (req, res) => {
 }
 
 const update = (req, res) => {
-  res.send(`Modifica totale al post con id:${req.params.id}`);
+  //mi recupero l'id del post da modificare
+  const id = parseInt(req.params.id);
+
+  //recupero il post tramite l'id
+  const post = posts.find(item => item.id === id);
+
+  //controllo se il post esiste altrimenti restituisco un errore nel json
+  if (!post) {
+    return res.status(404).json({ error: "Not found", message: "Post non trovato" });
+  }
+
+  //destrutturo il req.body
+  const { title, content, image, tags } = req.body;
+
+  //modifico il post
+  post.title = title;
+  post.content = content;
+  post.image = image;
+  post.tags = tags;
+
+  res.json(post)
 }
 
 const modify = (req, res) => {
