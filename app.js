@@ -10,6 +10,9 @@ app.use(express.json());
 //importo il middleware errorsHandler
 const errorsHandler = require('./middlewares/errorsHandler.js')
 
+//importo il middleware notFound
+const notFound = require('./middlewares/notFound.js')
+
 //importo il file router per i post
 const postRouter = require('./routers/posts.js');
 
@@ -21,6 +24,8 @@ app.get('/', (req, res) => {
 
 //utilizzo l'errorsHandler
 app.use(errorsHandler);
+//utilizzo il notFound
+app.use(notFound);
 
 //dico al server di rimanere in ascolto
 app.listen(port, () => {
