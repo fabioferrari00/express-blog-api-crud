@@ -7,6 +7,9 @@ const port = 3000;
 app.use(express.static('public'));
 app.use(express.json());
 
+//importo il middleware errorsHandler
+const errorsHandler = require('./middlewares/errorsHandler.js')
+
 //importo il file router per i post
 const postRouter = require('./routers/posts.js');
 
@@ -15,6 +18,9 @@ app.use('/posts', postRouter);
 app.get('/', (req, res) => {
   console.log('Server del mio blog');
 })
+
+//utilizzo l'errorsHandler
+app.use(errorsHandler);
 
 //dico al server di rimanere in ascolto
 app.listen(port, () => {

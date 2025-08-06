@@ -6,7 +6,7 @@ const index = (req, res) => {
 
   let filteredPost = posts
 
-  //verifico se name è definito o meno
+  //controllo se il post esiste altrimenti restituisco un errore nel json
   if (title) {
     filteredPost = posts.filter(item => item.title.toLowerCase().includes(title.toLowerCase()));
   }
@@ -15,10 +15,13 @@ const index = (req, res) => {
 }
 
 const show = (req, res) => {
+  //mi recupero l'id del post da mostrare
   const id = parseInt(req.params.id);
 
+  //recupero il post tramite l'id
   const post = posts.find(item => item.id === id);
 
+  //controllo se il post esiste altrimenti restituisco un errore nel json
   if (!post) {
     return res.status(404).json({ error: '404 Not Found', message: 'Post non trovato' })
   }
@@ -81,8 +84,10 @@ const modify = (req, res) => {
 const destroy = (req, res) => {
   const id = parseInt(req.params.id);
 
+  //recupero il post tramite l'id
   const post = posts.find(item => item.id === id);
 
+  //controllo se il post esiste altrimenti restituisco un errore nel json
   if (!post) {
     return res.status(404).json({ error: '404 Not Found', message: 'Post non trovato' })
   }
